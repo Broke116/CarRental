@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="CarRentalDBModel.Customer" Width="1.5" PointX="7.625" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CarRentalDBModel.Error" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarRentalDBModel.Log" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarRentalDBModel.Rental" Width="1.5" PointX="10.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalDBModel.Rental" Width="1.5" PointX="10.875" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CarRentalDBModel.Role" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CarRentalDBModel.Stock" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CarRentalDBModel.sysdiagram" Width="1.5" PointX="11.375" PointY="9.125" IsExpanded="true" />
