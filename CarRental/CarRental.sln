@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Data", "CarRental.Data\CarRental.Data.csproj", "{30EC6F2B-800C-4722-BE37-A495FCC4DBCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30EC6F2B-800C-4722-BE37-A495FCC4DBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EC6F2B-800C-4722-BE37-A495FCC4DBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EC6F2B-800C-4722-BE37-A495FCC4DBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EC6F2B-800C-4722-BE37-A495FCC4DBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
