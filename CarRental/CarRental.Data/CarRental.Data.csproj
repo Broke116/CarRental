@@ -96,7 +96,14 @@
     <Compile Include="App_Data\UserRole.cs">
       <DependentUpon>CarRentalDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infastructure\DbFactory.cs" />
+    <Compile Include="Infastructure\Disposable.cs" />
+    <Compile Include="Infastructure\IDbFactory.cs" />
+    <Compile Include="Infastructure\IUnitOfWork.cs" />
+    <Compile Include="Infastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
