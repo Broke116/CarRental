@@ -1,0 +1,36 @@
+﻿@model CarRental.Web.Models.ViewModel.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<section class="form-panel">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm", role = "formpanel" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>User Register</h4>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <button type="submit" name="go" class="btn btn-primary">Register</button>
+    }
+</section>
+    @section scripts {
+        <script>
+            $('#registerForm').validate();
+        </script>
+    }

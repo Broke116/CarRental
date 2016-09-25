@@ -52,84 +52,82 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\Car.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\CarRentalDB.Context.cs">
+    <Compile Include="App_Data\CarRentalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalDB.Context.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\CarRentalDB.cs">
+    <Compile Include="App_Data\CarRentalModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\CarRentalDB.Designer.cs">
+    <Compile Include="App_Data\CarRentalModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarRentalDB.edmx</DependentUpon>
+      <DependentUpon>CarRentalModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Customer.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Error.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Log.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Rental.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Role.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Stock.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\sysdiagram.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\User.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\UserRole.cs">
-      <DependentUpon>CarRentalDB.tt</DependentUpon>
+      <DependentUpon>CarRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Infastructure\DbFactory.cs" />
     <Compile Include="Infastructure\Disposable.cs" />
     <Compile Include="Infastructure\IDbFactory.cs" />
     <Compile Include="Infastructure\IUnitOfWork.cs" />
     <Compile Include="Infastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EntityDeploy Include="App_Data\CarRentalDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarRentalDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="App_Data\CarRentalModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarRentalModel.edmx</DependentUpon>
+      <LastGenOutput>CarRentalModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\CarRentalModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarRentalModel.edmx</DependentUpon>
+      <LastGenOutput>CarRentalModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="App_Data\CarRentalDB.edmx.diagram">
-      <DependentUpon>CarRentalDB.edmx</DependentUpon>
+    <EntityDeploy Include="App_Data\CarRentalModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CarRentalModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App_Data\CarRentalModel.edmx.diagram">
+      <DependentUpon>CarRentalModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\CarRentalDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CarRentalDB.Context.cs</LastGenOutput>
-      <DependentUpon>CarRentalDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="App_Data\CarRentalDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarRentalDB.edmx</DependentUpon>
-      <LastGenOutput>CarRentalDB.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

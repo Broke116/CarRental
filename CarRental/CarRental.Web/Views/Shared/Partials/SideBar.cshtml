@@ -1,7 +1,7 @@
 ﻿<div id="sidebar-wrapper">
     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
         <li class="active">
-            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-home fa-stack-1x "></i></span> Home</a>
+            <a href="@Url.Action("Index", "Home")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-home fa-stack-1x "></i></span> Home</a>
         </li>
         <li >
             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-male fa-stack-1x "></i></span> Customers</a>
@@ -19,7 +19,7 @@
             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-history fa-stack-1x "></i></span> Rental History</a>
         </li>
         <li >
-            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-in fa-stack-1x "></i></span>Login</a>
+            <a href="@Url.Action("Login", "Account")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-in fa-stack-1x "></i></span>Login</a>
         </li>
     </ul>
 </div>

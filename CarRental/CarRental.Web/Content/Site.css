@@ -177,3 +177,56 @@ textarea {
  
     }
 }
+
+/* login form */
+.form-panel {
+	margin: 40px auto;
+	max-width: 386px;
+}
+
+.form-panel > section {
+	text-align: center;
+	margin-top: 15px;
+}
+	.form-panel > section:first-child {
+		margin-bottom: 42px;
+	}
+
+form[role=formpanel] {
+	font: 14px/2.2em Tahoma, serif;
+	color: #444;
+	background: #f4f4f4;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 21px 38px 35px 38px;
+	margin-bottom: 25px;
+	
+	-webkit-box-shadow: 0 0 3px 0 rgba(50, 50, 50, .4);
+	   -moz-box-shadow: 0 0 3px 0 rgba(50, 50, 50, .4);
+	        box-shadow: 0 0 3px 0 rgba(50, 50, 50, .4);
+}	
+	form[role=formpanel] .form-group {
+		margin-bottom: 8px;
+	}
+	form[role=formpanel] label {
+		margin: 0;
+	}
+	form[role=formpanel] input,
+	form[role=formpanel] button {
+		margin: 0;
+	}
+	form[role=formpanel] input {
+		color: #777;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 0;
+	    -moz-border-radius: 0;
+	    -webkit-border-radius: 0;
+		box-shadow: none;
+	}
+	form[role=formpanel] button {
+		padding: 7px 60px;	
+		margin-top: 15px;
+		font-size: 16px;
+	}

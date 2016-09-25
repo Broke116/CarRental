@@ -40,6 +40,10 @@ namespace CarRental.Web
                 .As<IEncryptionService>()
                 .InstancePerRequest();
 
+            builder.RegisterType<MembershipService>()
+                .As<IMembershipService>()
+                .InstancePerRequest();
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
