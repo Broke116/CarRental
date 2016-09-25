@@ -13,18 +13,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Password, new {@class = "control-label"})
             @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
-            @Html.ActionLink("Forgot your password?", "", "")
+            @Html.ValidationMessageFor(model => model.Password)
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.RememberMe, new {@class = "control-label"}) 
             @Html.CheckBoxFor(model => model.RememberMe)
         </div>
 
-        <button type="submit" name="go" class="btn btn-primary">Login</button><br />
+        <button type="submit" name="go" class="btn btn-primary">Login</button><br/>
+        @Html.ActionLink("Forgot your password?", "", "")<br />
         @Html.ActionLink("Don't have an account? Sign up", "Register", "Account")
     }
 </section>

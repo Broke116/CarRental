@@ -11,7 +11,7 @@ namespace CarRental.Web.Controllers
 {
     public class AccountController : BaseController
     {
-        #region vars
+        #region variables
         private readonly IBaseRepository<User> _userRepository;
         private readonly IBaseRepository<Role> _roleRepository;
         private readonly IBaseRepository<UserRole> _userRoleRepository;
@@ -112,4 +112,5 @@ namespace CarRental.Web.Controllers
         }
         #endregion
     }
+
 }

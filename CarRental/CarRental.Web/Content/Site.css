@@ -230,3 +230,33 @@ form[role=formpanel] {
 		margin-top: 15px;
 		font-size: 16px;
 	}
+
+    .field-validation-error {
+        display: inline-block;  width:100%;
+        color:#ecf0f1;
+        font-size:.9em;
+        background-color:#e74c3c;
+        padding:10px;
+    }
+
+    .field-validation-error {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: bold;
+        line-height: 1;
+        color: #ffffff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #c71c22;
+    }
+
+    .input-validation-error {
+        border-left: 5px solid #a94442 !important;
+    }
+
+    .form-control.valid {
+        border-left: 5px solid #42A948;
+    }
