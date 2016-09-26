@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
+using CarRental.Data.App_Data;
 
 namespace CarRental.Web.Structure.Authorize
 {
-    public class CustomPrincipal
+    public class CustomPrincipal : IPrincipal
     {
         public IIdentity Identity { get; private set; }
 
@@ -24,9 +26,9 @@ namespace CarRental.Web.Structure.Authorize
             this.Identity = new GenericIdentity(username);
         }
 
-        public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int ID { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
         public string[] Roles { get; set; }
     }
 }

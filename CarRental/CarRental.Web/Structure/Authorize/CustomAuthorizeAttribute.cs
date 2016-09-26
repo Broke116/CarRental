@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using CarRental.Data.App_Data;
 
 namespace CarRental.Web.Structure.Authorize
 {
@@ -37,7 +40,7 @@ namespace CarRental.Web.Structure.Authorize
 
                 if (!string.IsNullOrEmpty(Users))
                 {
-                    if (!Users.Contains(CurrentUser.UserId.ToString()))
+                    if (!Users.Contains(CurrentUser.ID.ToString()))
                     {
                         filterContext.Result = new RedirectToRouteResult(new
                             RouteValueDictionary(new { controller = "Error", action = "AccessDenied" }));

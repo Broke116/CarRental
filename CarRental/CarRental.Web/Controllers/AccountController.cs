@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CarRental.Data.App_Data;
 using CarRental.Data.Infastructure;
 using CarRental.Data.Repositories;
 using CarRental.Service.Interfaces;
 using CarRental.Web.Models.ViewModel;
+using Newtonsoft.Json;
 
 namespace CarRental.Web.Controllers
 {
@@ -40,7 +44,45 @@ namespace CarRental.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = model;
+                var user = _userRepository.GetAll().FirstOrDefault(u => u.Email == model.Email);
+                if (user != null && IsUserValid(user, model.Password))
+                {
+                    List<Role> listRole = new List<Role>();
+                    var userRoles = GetUserRoles(user.Username);
+                    var val = userRoles.Select(r => r.Name);
+                    
+                    var rolesArray = new string[] { val.ToString() };
+                    int i = 5;
+
+                    var principalModel = new PrincipalModel
+                    {
+                        ID = user.ID,
+                        Email = user.Email,
+                        Username = user.Username,
+                        Roles = userRoles.Select(x => x.Name).ToArray()
+                    };
+
+                    var userData = JsonConvert.SerializeObject(principalModel, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+                    var authenticationTicket = new FormsAuthenticationTicket(
+                        1,
+                        user.Username,
+                        DateTime.Now,
+                        DateTime.Now.AddHours(1),
+                        model.RememberMe,
+                        userData);
+
+                    var encryptedTicket = FormsAuthentication.Encrypt(authenticationTicket);
+                    var httpCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    Response.Cookies.Add(httpCookie);
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError("", "Incorrect username and/or password");
             }
 
             return View(model);
@@ -96,6 +138,29 @@ namespace CarRental.Web.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account", null);
+        }
+
+        public List<Role> GetUserRoles(string username)
+        {
+            List<Role> _result = new List<Role>();
+            var existingUser = _userRepository.GetAll().FirstOrDefault(x => x.Username == username);
+
+            if (existingUser != null)
+            {
+                foreach (var userRole in existingUser.UserRoles)
+                {
+                    _result.Add(userRole.Role);
+                }
+            }
+
+            return _result.Distinct().ToList();
+        }
+
         #region extension methods
         private void addUserToRole(User user, int roleId)
         {
@@ -110,7 +175,21 @@ namespace CarRental.Web.Controllers
             };
             _userRoleRepository.Add(userRole);
         }
+
+        private bool IsPasswordValid(User user, string password)
+        {
+            return string.Equals(_encryptionService.EncryptPassword(password, user.Salt), user.Password);
+        }
+
+        private bool IsUserValid(User user, string password)
+        {
+            if (IsPasswordValid(user, password))
+            {
+                return true;
+            }
+
+            return false;
+        }
         #endregion
     }
-
 }

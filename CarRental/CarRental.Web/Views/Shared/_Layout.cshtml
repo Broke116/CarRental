@@ -39,15 +39,15 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        
-                    </li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Username</a></li>
+                    <li>
+                        @(HttpContext.Current.User.Identity.IsAuthenticated == true ?
+                                  Html.Label($"{HttpContext.Current.User.Identity.Name}") : Html.ActionLink("Login", "Login", "Account"))
+                    </li>
                 </ul>
             </div>
         </div>

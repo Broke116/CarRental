@@ -3,5 +3,6 @@
 }
 
 <div>
-    latest cars
+    @(HttpContext.Current.User.Identity.IsAuthenticated == true ?
+          Html.Label($"Welcome {HttpContext.Current.User.Identity.Name}") : Html.Label("Please login"))
 </div>

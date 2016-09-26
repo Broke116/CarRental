@@ -10,7 +10,7 @@
             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-key fa-stack-1x "></i></span> Register Customer</a>
         </li>
         <li >
-            <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Cars</a>
+            <a href="@Url.Action("Index", "Car")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Cars</a>
         </li>
         <li >
             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-plus fa-stack-1x "></i></span>Add car</a>
@@ -18,8 +18,17 @@
         <li >
             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-history fa-stack-1x "></i></span> Rental History</a>
         </li>
-        <li >
-            <a href="@Url.Action("Login", "Account")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-in fa-stack-1x "></i></span>Login</a>
-        </li>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated == false)
+        {
+            <li>
+                <a href="@Url.Action("Login", "Account")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-in fa-stack-1x "></i></span>Login</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action("Logout", "Account")"><span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-out fa-stack-1x "></i></span>Logout</a>
+            </li>
+        }
     </ul>
 </div>
