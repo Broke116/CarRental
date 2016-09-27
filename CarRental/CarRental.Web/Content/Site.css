@@ -260,3 +260,13 @@ form[role=formpanel] {
     .form-control.valid {
         border-left: 5px solid #42A948;
     }
+
+ /* car section */
+#addCarSection {
+    padding: 20px;
+}
+
+.spaceBlock {
+    margin-top: 20px;
+}
+/* car section end*/
