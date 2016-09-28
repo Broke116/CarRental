@@ -7,23 +7,23 @@ namespace CarRental.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/bower_components/jquery/dist/jquery.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/bower_components/jquery.validate/dist/jquery.validate.js"));
-
+                        "~/Scripts/jquery.validate*"));
+            
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/bower_components/modernizr/modernizr.js"));
+                        "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/bower_components/bootstrap/dist/js/bootstrap.js",
-                      "~/bower_components/respond/src/respond.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css/bootstrap").Include(
-                "~/bower_components/bootstrap/dist/css/bootstrap.css", new CssRewriteUrlTransform()));
+                "~/Content/bootstrap.min.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css").Include("~/bower_components/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+                      "~/Content/site.css").Include("~/Content/font-awesome.min.css", new CssRewriteUrlTransform()));
         }
     }
 }
