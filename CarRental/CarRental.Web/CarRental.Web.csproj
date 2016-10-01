@@ -183,13 +183,18 @@
     <Compile Include="Structure\Authorize\CustomPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\Site.css" />
     <Content Include="Content\images\imageupload.png" />
+    <Content Include="Content\images\raty\cancel-off.png" />
+    <Content Include="Content\images\raty\cancel-on.png" />
+    <Content Include="Content\images\raty\star-half.png" />
+    <Content Include="Content\images\raty\star-off.png" />
+    <Content Include="Content\images\raty\star-on.png" />
     <Content Include="Content\js\sidebar_menu.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -200,6 +205,11 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -223,7 +233,7 @@
     <Content Include="Views\Car\AddCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

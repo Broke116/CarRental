@@ -51,6 +51,7 @@ textarea {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    overflow-x: hidden;
 }
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
@@ -83,6 +84,7 @@ textarea {
     list-style: none;
     margin-top: 2px;
     background: #FFF;
+    display: block;
 }
  
 .sidebar-nav li {
@@ -268,5 +270,10 @@ form[role=formpanel] {
 
 .spaceBlock {
     margin-top: 20px;
+}
+
+.backgroundStyle {
+    background: #FFF;
+    padding: 10px;
 }
 /* car section end*/

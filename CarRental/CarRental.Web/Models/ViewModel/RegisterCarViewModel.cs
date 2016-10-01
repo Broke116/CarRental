@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace CarRental.Web.Models.ViewModel
 {
@@ -22,20 +24,22 @@ namespace CarRental.Web.Models.ViewModel
 
     public enum FuelType
     {
+        [Display(Name = "Gasoline")]
         Gasoline,
+        [Display(Name = "Diesel")]
         Diesel
     }
 
     public enum Capacity
     {
         [Display(Name = "2")]
-        Two,
+        Two = 2,
         [Display(Name = "4")]
-        Four,
+        Four = 4,
         [Display(Name = "5")]
-        Five,
+        Five = 5,
         [Display(Name = "9")]
-        Nine
+        Nine = 9
     }
 
     public enum Insurance
@@ -83,7 +87,7 @@ namespace CarRental.Web.Models.ViewModel
 
         [Required(ErrorMessage = "Capacity required")]
         [Display(Name = "Capacity")]
-        public int Capacity { get; set; }
+        public string Capacity { get; set; }
 
         [Required(ErrorMessage = "Price required")]
         [Display(Name = "Price")]
@@ -99,7 +103,7 @@ namespace CarRental.Web.Models.ViewModel
 
         [Required(ErrorMessage = "Image required")]
         [Display(Name = "Image")]
-        public string Image { get; set; }
+        public HttpPostedFileBase Image { get; set; }
 
         [Required(ErrorMessage = "Rating required")]
         [Display(Name = "Rating")]

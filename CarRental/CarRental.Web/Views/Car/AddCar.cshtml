@@ -7,25 +7,38 @@
 
 <div id="addCarSection">
     <div class="row">
-        <h2>Register Car Section</h2>
-        <div class="col-xs-3 col-md-4">
-            <div class="text-center">
-                <img src="~/Content/images/imageupload.png" class="avatar img-responsive" alt="avatar">
-                <h6>Add photo</h6>
-
-                <input type="file" >
-            </div>
-        </div>
-        <div class="col-xs-9 col-md-8">
-            @using (Html.BeginForm("AddCar", "Car", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("AddCar", "Car", FormMethod.Post, new {role = "form", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <h2>Register Car Section</h2>
+            if (ViewData["successMessage"] != null)
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> Car has been added
+                </div>
+            }
+            if (ViewData["errorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> @ViewData["errorMessage"]
+                </div>
+            }
+            <div class="col-xs-3 col-md-4">
+                <div class="text-center">
+                    <img src="~/Content/images/imageupload.png" class="avatar img-responsive" alt="avatar">
+                    <h6>Add photo</h6>
+                    <input type="file" name="image" id="image">
+                </div>
+            </div>
+            <div class="col-xs-9 col-md-8">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6">
                             @Html.LabelFor(model => model.Title, new { @class = "control-label" })
-                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control text-center"})
+                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control text-center" })
                             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-xs-6 col-sm-6">
@@ -45,27 +58,27 @@
                     <div class="row spaceBlock">
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.GroupType, new { @class = "control-label" })
-                            @Html.DropDownList("Group Type",
-                                               new SelectList(Enum.GetValues(typeof(GroupType))),
-                                               "Select Group Type",
-                                               new { @class = "form-control" })
+                            @Html.DropDownList("GroupType",
+                            new SelectList(Enum.GetValues(typeof(GroupType))),
+                            "Select Group Type",
+                            new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.GroupType, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.GearType, new { @class = "control-label" })
-                            @Html.DropDownList("Gear Type",
-                                               new SelectList(Enum.GetValues(typeof(GearType))),
-                                               "Select Gear Type",
-                                               new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.InsuranceType, "", new { @class = "text-danger" })
+                            @Html.DropDownList("GearType",
+                            new SelectList(Enum.GetValues(typeof(GearType))),
+                            "Select Gear Type",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.GearType, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.FuelType, new { @class = "control-label" })
-                            @Html.DropDownList("Fuel Type",
-                                               new SelectList(Enum.GetValues(typeof(FuelType))),
-                                               "Select Fuel Type",
-                                               new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.InsuranceType, "", new { @class = "text-danger" })
+                            @Html.DropDownList("FuelType",
+                            new SelectList(Enum.GetValues(typeof(FuelType))),
+                            "Select Fuel Type",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row spaceBlock">
@@ -89,10 +102,10 @@
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.Capacity, new { @class = "control-label" })
                             @Html.DropDownList("Capacity",
-                                               new SelectList(Enum.GetNames(typeof(Capacity))),
-                                               "Select Capacity",
-                                               new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.InsuranceType, "", new { @class = "text-danger" })
+                            new SelectList(Enum.GetValues(typeof(Capacity))),
+                            "Select Capacity",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.Price, new { @class = "control-label" })
@@ -102,25 +115,43 @@
                         <div class="col-xs-6 col-sm-4">
                             @Html.LabelFor(model => model.InsuranceType, new { @class = "control-label" })
                             @Html.DropDownList("InsuranceType",
-                                               new SelectList(Enum.GetValues(typeof(Insurance))),
-                                               "Select Insurance Type",
-                                               new { @class = "form-control" })
+                            new SelectList(Enum.GetValues(typeof(Insurance))),
+                            "Select Insurance Type",
+                            new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.InsuranceType, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group spaceBlock">
                         @Html.LabelFor(model => model.Description, new { @class = "control-label" })
-                        @Html.TextAreaFor(model => model.Description , new { @class = "form-control", cols = "10" })
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", cols = "10" })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     </div>
+                    <div class="form-group spaceBlock backgroundStyle">
+                        @Html.LabelFor(model => model.Rating, new { @class = "control-label" })
+                        <div id="custom"></div>
+                        @Html.HiddenFor(model => model.Rating, new { @id = "ratingValue" })
+                    </div>
+                    <div class="form-group spaceBlock">
+                        <input type="submit" class="btn btn-primary" value="Submit Car" />
+                    </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
 
 @section scripts {
     <script type="text/javascript">
+        $('#custom').raty({
+            //scoreName: 'entity.score',
+            number: 5,
+            path: '/Content/images/raty',
+            click: function (score) {
+                $("#ratingValue").val(score);
+            }
+        });
+        
+        /* stock input up / down value */
         $("#downgrade")
             .click(function() {
                 var oldValue = $("#inputStocks").val().trim(), newValue = 0;
