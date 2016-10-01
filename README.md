@@ -1,2 +1,3 @@
 # CarRental
-Car Rental application
+
+This project is a Car Rental application
