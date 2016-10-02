@@ -14,10 +14,5 @@ namespace CarRental.Web.Structure.Mapper
         {
             get { return "MapperTranslator"; }
         }
-
-        public MapperTranslator()
-        {
-            CreateMap<Car, CarViewModel>();
-        }
     }
 }

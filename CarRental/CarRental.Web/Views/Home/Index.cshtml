@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@model CarRental.Web.Models.ViewModel.CarViewModel
+@model IEnumerable<CarRental.Web.Models.ViewModel.CarViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -18,20 +18,39 @@
                 }
                 else
                 {
-                    <div class="col-xs-6 col-sm-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                C200
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                C200
-                            </div>
-                        </div>
-                    </div>
+                    foreach (var car in Model)
+                     {
+                         <div class="col-xs-6 col-sm-6">
+                             <div class="panel panel-default">
+                                 <div class="panel-heading">
+                                     <strong>@car.Title</strong>
+                                 </div>
+                             </div>
+                             <div class="panel-body">
+                                 <div class="media">
+                                     <a class="pull-left" href="#">
+                                         <a class="pull-left" rel="gallery1" title="@car.Title">
+                                             <img class="media-object" width="160" height="120" src="~/Content/images/uploads/@car.ImageUrl" alt="" />
+                                         </a>
+
+                                     </a>
+                                     <div class="media-body">
+                                         @if (@car.Stock > 0)
+                                         {
+                                             <label class="label label-info">Available</label>
+                                         }
+                                         else
+                                         {
+                                            <label class="label label-info">Not Available</label>
+                                         }
+                                         <div><small>@car.Description...</small></div>
+                                         <label class="label label-info">@car.Location</label><br />
+                                     </div>
+                                     <br />
+                                 </div>
+                             </div>
+                         </div>
+                     }
                 }
             </div>
         </div>        

@@ -185,6 +185,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structure\Authorize\CustomAuthorizeAttribute.cs" />
     <Compile Include="Structure\Authorize\CustomPrincipal.cs" />
+    <Compile Include="Structure\Mapper\AutoMapperConfig.cs" />
     <Compile Include="Structure\Mapper\MapperTranslator.cs" />
   </ItemGroup>
   <ItemGroup>

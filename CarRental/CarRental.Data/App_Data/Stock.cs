@@ -22,9 +22,9 @@ namespace CarRental.Data.App_Data
     
         public int ID { get; set; }
         public int CarId { get; set; }
-        public Nullable<int> IsAvailable { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<System.Guid> UniqueKey { get; set; }
+        public int IsAvailable { get; set; }
+        public int Quantity { get; set; }
+        public System.Guid UniqueKey { get; set; }
     
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

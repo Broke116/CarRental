@@ -93,21 +93,20 @@ namespace CarRental.Web.Controllers
                         Image = pathUrl,
                         InsuranceType = model.InsuranceType,
                         Price = model.Price,
-                        Rating = model.Rating
+                        Rating = model.Rating,
+                        CreatedDate = DateTime.Now
                     };
                     #endregion
 
                     #region add stock value
-                    for (int i = 0; i < model.Stock; i++)
+                    Stock stock = new Stock()
                     {
-                        Stock stock = new Stock()
-                        {
-                            IsAvailable = 1,
-                            Car = newCar,
-                            UniqueKey = Guid.NewGuid()
-                        };
-                        newCar.Stocks.Add(stock);
-                    }
+                        IsAvailable = 1,
+                        Quantity = model.Stock,
+                        CarId = newCar.ID,
+                        UniqueKey = Guid.NewGuid()
+                    };
+                    newCar.Stocks.Add(stock);
                     #endregion
 
                     ViewData["successMessage"] = "Ok";

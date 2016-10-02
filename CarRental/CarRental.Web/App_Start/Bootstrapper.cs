@@ -1,4 +1,6 @@
-﻿namespace CarRental.Web
+﻿using CarRental.Web.Structure.Mapper;
+
+namespace CarRental.Web
 {
     public class Bootstrapper
     {

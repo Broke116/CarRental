@@ -51,6 +51,8 @@ namespace CarRental.Web.Models.ViewModel
 
     #endregion
 
+    public class StockValue { public int Stock { get; set; } }
+
     public class CarViewModel
     {
         [Required(ErrorMessage = "Title required")]
@@ -104,6 +106,8 @@ namespace CarRental.Web.Models.ViewModel
         [Required(ErrorMessage = "Image required")]
         [Display(Name = "Image")]
         public HttpPostedFileBase Image { get; set; }
+
+        public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Rating required")]
         [Display(Name = "Rating")]

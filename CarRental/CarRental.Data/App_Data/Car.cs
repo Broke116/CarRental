@@ -27,14 +27,15 @@ namespace CarRental.Data.App_Data
         public string GroupType { get; set; }
         public string GearType { get; set; }
         public string FuelType { get; set; }
-        public Nullable<int> Capacity { get; set; }
-        public Nullable<int> Rating { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public int Capacity { get; set; }
+        public int Rating { get; set; }
+        public decimal Price { get; set; }
         public string Location { get; set; }
         public string City { get; set; }
         public string County { get; set; }
         public string InsuranceType { get; set; }
-        public Nullable<System.Guid> UniqueId { get; set; }
+        public System.Guid UniqueId { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stocks { get; set; }
