@@ -51,7 +51,7 @@ namespace CarRental.Web.Models.ViewModel
 
     #endregion
 
-    public class RegisterCarViewModel
+    public class CarViewModel
     {
         [Required(ErrorMessage = "Title required")]
         [Display(Name = "Title")]

@@ -1,15 +1,38 @@
-﻿@{
+﻿@using System.Linq
+@model CarRental.Web.Models.ViewModel.CarViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-primary" id="panelLatestCar">
+        <div class="panel panel-default" id="panelLatestCar">
             <div class="panel-heading">
                 <h3 class="panel-title">Latest Cars in the Stock</h3>
             </div>
             <div class="panel-body">
-                
+                @if (Model == null)
+                {
+                    <span>Loading cars</span> <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
+                }
+                else
+                {
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                C200
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                C200
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>        
     </div>

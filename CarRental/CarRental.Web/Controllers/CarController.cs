@@ -31,7 +31,7 @@ namespace CarRental.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCar(RegisterCarViewModel model)
+        public ActionResult AddCar(CarViewModel model)
         {
             if (ModelState.IsValid)
             {
