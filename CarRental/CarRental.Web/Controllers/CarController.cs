@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using CarRental.Data.App_Data;
 using CarRental.Data.Infastructure;
@@ -36,19 +37,30 @@ namespace CarRental.Web.Controllers
             {
                 try
                 {
+                    #region if car still exists, it won't add
+                    var car = _carRepository.GetAll().FirstOrDefault(c => c.Title == model.Title);
+                    if (car != null)
+                    {
+                        ViewData["errorMessage"] = "car already exists";
+                        return View(model);
+                    }
+                    #endregion
+
                     #region car image upload
-                    string pathUrl = "";
+                    var pathUrl = "";
 
                     if (model.Image.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(model.Image.FileName);
-                        var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                        if (System.IO.File.Exists(path)) // if file exists throw an error
+                        var path = Path.Combine(Server.MapPath("~/Content/images/uploads"), fileName);
+
+                        var absolutePath = Path.GetFullPath(path);
+                        if (System.IO.File.Exists(absolutePath)) // if file exists throw an error
                         {
-                            ViewData["errorMessage"] = "The file has been already uploaded";
+                            ViewData["errorMessage"] = "This file already exists";
                             return View();
                         }
-                        model.Image.SaveAs(path);
+                        model.Image.SaveAs(absolutePath);
                         pathUrl = path.Substring(path.LastIndexOf("\\") + 1);
                     }
                     #endregion
@@ -102,7 +114,7 @@ namespace CarRental.Web.Controllers
 
                     _carRepository.Add(newCar);
                     _unitOfWork.Commit();
-                    //return RedirectToAction("CarList","Car")// this will be added when carlist add
+                    //return RedirectToAction("CarList","Car")// this code is active when carlist will add
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
@@ -114,6 +126,8 @@ namespace CarRental.Web.Controllers
                         Message = ex.Message,
                         StackTrace = ex.StackTrace
                     };
+                    _errorsRepository.Add(exception);
+                    _unitOfWork.Commit();
                 }
             }
             return View();
