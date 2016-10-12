@@ -25,39 +25,50 @@
                                  <div class="panel-heading">
                                      <strong>@car.Title</strong>
                                  </div>
-                             </div>
-                             <div class="panel-body">
-                                 <div class="media">
-                                     <a class="pull-left" href="#">
-                                         <a class="pull-left" rel="gallery1" title="@car.Title">
+                                 <div class="panel-body">
+                                     <div class="media">
+                                         <a class="pull-left" href="@Url.Action("Detail", "Car", new {id = @car.Id})">
                                              <img class="media-object" width="160" height="120" src="~/Content/images/uploads/@car.ImageUrl" alt="" />
                                          </a>
-
-                                     </a>
-                                     <div class="media-body">
-                                         @if (@car.Stock > 0)
-                                         {
-                                             <label class="label label-info">Available</label>
-                                         }
-                                         else
-                                         {
-                                            <label class="label label-info">Not Available</label>
-                                         }
-                                         <div><small>@car.Description...</small></div>
-                                         <label class="label label-info">@car.Location</label><br />
+                                         <div class="media-body">
+                                             @if (@car.GetStock.Count != 0)
+                                             {
+                                                 <label class="label label-success">Available</label>
+                                             }
+                                             else
+                                             {
+                                                 <label class="label label-danger">Not Available</label>
+                                             }
+                                             <div>
+                                                 <small>@car.Description...</small>
+                                             </div>
+                                             <label class="label label-info">@car.Location</label><br />
+                                         </div>
+                                         <br />
                                      </div>
-                                     <br />
+                                 </div>
+                                 <div class="panel-footer">
+                                     <div class="custom" data-score="@car.Rating"></div>
                                  </div>
                              </div>
                          </div>
                      }
                 }
             </div>
-        </div>        
+        </div>
     </div>
     <div class="col-md-4">
         aaaa
     </div>
 </div>
-@*@(HttpContext.Current.User.Identity.IsAuthenticated == true ?
-              Html.Label($"Welcome {HttpContext.Current.User.Identity.Name}") : Html.Label("Please login"))*@
+@section scripts {
+    <script type="text/javascript">
+        $('.custom').raty({
+            score: function() {
+                return $(this).attr('data-score');
+            },
+            number: 5,
+            path: '/Content/images/raty'
+        });
+    </script>
+}

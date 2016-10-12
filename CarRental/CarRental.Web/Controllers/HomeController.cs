@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using CarRental.Data.App_Data;
 using CarRental.Data.Infastructure;
 using CarRental.Data.Repositories;
@@ -36,21 +32,29 @@ namespace CarRental.Web.Controllers
                 .OrderByDescending(m => m.CreatedDate)
                 .Select(c => new CarViewModel
                 {
+                    Id = c.ID,
                     Title = c.Title,
                     Description = c.Description,
                     City = c.City,
                     County = c.County,
                     Location = c.Location,
                     ImageUrl = c.Image,
-                    Stock = _stockRepository.FindBy(s => s.CarId == c.ID).Select(s => (int)s.Quantity).FirstOrDefault()
+                    GetStock = c.Stocks,
+                    Rating = c.Rating
                 }).ToList();
-            
+
+            // _stockRepository.FindBy(s => s.CarId == c.ID).Select(s => (int)s.Quantity).AsEnumerable().Count()
             /*var config = new MapperConfiguration(x => x.CreateMap<Car, CarViewModel>());
             var mapper = config.CreateMapper();
             CarViewModel model = mapper.Map<CarViewModel>(car);*/
             /**/
 
             return View(car);
+        }
+
+        public ActionResult Detail(int Id)
+        {
+            return View();
         }
 
         public ActionResult About()

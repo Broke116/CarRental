@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using CarRental.Data.App_Data;
 
 namespace CarRental.Web.Models.ViewModel
 {
@@ -51,10 +52,12 @@ namespace CarRental.Web.Models.ViewModel
 
     #endregion
 
-    public class StockValue { public int Stock { get; set; } }
+    public class StockValue { public ICollection<Stock> Stock { get; set; } }
 
     public class CarViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Title required")]
         [Display(Name = "Title")]
         public string Title { get; set; }
@@ -62,6 +65,8 @@ namespace CarRental.Web.Models.ViewModel
         [Required(ErrorMessage = "Stock value is required")]
         [Display(Name = "Stock")]
         public int Stock { get; set; }
+
+        public ICollection<Stock> GetStock { get; set; }
 
         [Required(ErrorMessage = "Group Type required")]
         [Display(Name = "Group Type")]

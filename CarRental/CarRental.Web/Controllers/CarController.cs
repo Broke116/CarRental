@@ -25,6 +25,7 @@ namespace CarRental.Web.Controllers
             return View();
         }
 
+        #region add car section
         public ActionResult AddCar()
         {
             return View();
@@ -113,8 +114,8 @@ namespace CarRental.Web.Controllers
 
                     _carRepository.Add(newCar);
                     _unitOfWork.Commit();
-                    //return RedirectToAction("CarList","Car")// this code is active when carlist will add
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Car");
+                    //return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {
@@ -129,6 +130,12 @@ namespace CarRental.Web.Controllers
                     _unitOfWork.Commit();
                 }
             }
+            return View();
+        }
+        #endregion
+
+        public ActionResult Detail(int Id)
+        {
             return View();
         }
     }
