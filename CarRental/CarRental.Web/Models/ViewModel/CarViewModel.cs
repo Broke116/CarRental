@@ -92,9 +92,32 @@ namespace CarRental.Web.Models.ViewModel
         [Display(Name = "Country")]
         public string County { get; set; }
 
+        private string _capacity;
         [Required(ErrorMessage = "Capacity required")]
         [Display(Name = "Capacity")]
-        public string Capacity { get; set; }
+        public string Capacity {
+            get { return _capacity; }
+            set
+            {
+                _capacity = value;
+                switch (_capacity)
+                {
+                    case "2":
+                        _capacity = "Two";
+                        break;
+                    case "4":
+                        _capacity = "Four";
+                        break;
+                    case "5":
+                        _capacity = "Five";
+                        break;
+                    default:
+                        _capacity = "Nine";
+                        break;
+                }
+                //value = _capacity;
+            }
+        }
 
         [Required(ErrorMessage = "Price required")]
         [Display(Name = "Price")]

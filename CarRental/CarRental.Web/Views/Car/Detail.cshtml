@@ -1,7 +1,151 @@
-﻿
+﻿@using CarRental.Web.Models.ViewModel
+@model CarRental.Web.Models.ViewModel.CarViewModel
+
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Detail Section";
 }
 
-<h2>Detail</h2>
+<div id="editCar">
+    <div class="row">
+        @using (Html.BeginForm("Detail", "Car", FormMethod.Post, new {role = "form", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <h2>Car Detail panel</h2>
+            if (ViewData["successMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> Car has been updated
+                </div>
+            }
+            if (ViewData["errorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> @ViewData["errorMessage"]
+                </div>
+            }
+            <div class="col-xs-3 col-md-4">
+                <div class="text-center">
+                    <img class="media-object img-responsive" src="~/Content/images/uploads/@Model.ImageUrl" width="512" height="512" alt="avatar">
+                    <input type="file" name="image" id="image" class="spaceBlock">
+                </div>
+            </div>
+            <div class="col-xs-9 col-md-8">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            @Html.LabelFor(model => model.Title, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Title, new {@class = "form-control text-center"})
+                            @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            @Html.LabelFor(model => model.Stock, new {@class = "control-label"})
+                            <div class="input-group number-spinner">
+                                <span class="input-group-btn">
+                                    <a class="btn btn-default" id="downgrade"><span class="glyphicon glyphicon-minus"></span></a>
+                                </span>
+                                @Html.TextBoxFor(model => model.Stock, new {@id = "inputStocks", @class = "form-control text-center", @Value = @Model.Stock})
+                                @Html.ValidationMessageFor(model => model.Stock, "", new {@class = "text-danger"})
+                                <span class="input-group-btn">
+                                    <a class="btn btn-default" id="upgrade"><span class="glyphicon glyphicon-plus"></span></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row spaceBlock">
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.GroupType, new {@class = "control-label"})
+                            @Html.DropDownList("GroupType",
+                                new SelectList(Enum.GetValues(typeof(GroupType))),
+                                "Select Group Type",
+                                new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.GroupType, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.GearType, new {@class = "control-label"})
+                            @Html.DropDownList("GearType",
+                                new SelectList(Enum.GetValues(typeof(GearType))),
+                                "Select Gear Type",
+                                new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.GearType, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.FuelType, new {@class = "control-label"})
+                            @Html.DropDownList("FuelType",
+                                new SelectList(Enum.GetValues(typeof(FuelType))),
+                                "Select Fuel Type",
+                                new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.FuelType, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="row spaceBlock">
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.Location, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Location, new {@class = "form-control text-center"})
+                            @Html.ValidationMessageFor(model => model.Location, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.City, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.City, new {@class = "form-control text-center"})
+                            @Html.ValidationMessageFor(model => model.City, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.County, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.County, new {@class = "form-control text-center"})
+                            @Html.ValidationMessageFor(model => model.County, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="row spaceBlock">
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.Capacity, new {@class = "control-label"})
+                            @Html.DropDownList("Capacity",
+                                new SelectList(Enum.GetValues(typeof(Capacity))),
+                                "Select Capacity",
+                                new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Capacity, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.Price, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Price, new {@class = "form-control text-center"})
+                            @Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            @Html.LabelFor(model => model.InsuranceType, new {@class = "control-label"})
+                            @Html.DropDownList("InsuranceType",
+                                new SelectList(Enum.GetValues(typeof(Insurance))),
+                                "Select Insurance Type",
+                                new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.InsuranceType, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group spaceBlock">
+                        @Html.LabelFor(model => model.Description, new {@class = "control-label"})
+                        @Html.TextAreaFor(model => model.Description, new {@class = "form-control", cols = "10"})
+                        @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                    </div>
+                    <div class="form-group spaceBlock backgroundStyle">
+                        @Html.LabelFor(model => model.Rating, new {@class = "control-label"})
+                        <div class="custom" data-score="@Model.Rating"></div>
+                    </div>
+                    <div class="form-group spaceBlock">
+                        <input type="submit" class="btn btn-primary" value="Update Car" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
+@section scripts {
+    <script type="text/javascript">
+        $('.custom').raty({
+            score: function () {
+                return $(this).attr('data-score');
+            },
+            number: 5,
+            path: '/Content/images/raty'
+        });
+    </script>
+}

@@ -22,12 +22,6 @@ namespace CarRental.Web.Controllers
 
         public ActionResult Index()
         {
-            /*Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Car, CarViewModel>();
-            });
-            */
-
             var car = _carRepository.GetAll()
                 .OrderByDescending(m => m.CreatedDate)
                 .Select(c => new CarViewModel
@@ -43,19 +37,13 @@ namespace CarRental.Web.Controllers
                     Rating = c.Rating
                 }).ToList();
 
-            // _stockRepository.FindBy(s => s.CarId == c.ID).Select(s => (int)s.Quantity).AsEnumerable().Count()
-            /*var config = new MapperConfiguration(x => x.CreateMap<Car, CarViewModel>());
-            var mapper = config.CreateMapper();
-            CarViewModel model = mapper.Map<CarViewModel>(car);*/
-            /**/
-
             return View(car);
         }
 
-        public ActionResult Detail(int Id)
-        {
-            return View();
-        }
+        //public ActionResult Detail(int Id)
+        //{
+        //    return View();
+        //}
 
         public ActionResult About()
         {
