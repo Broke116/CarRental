@@ -1,3 +1,9 @@
 # CarRental
 
-Readme only contains techinal information for users who want to use it. Much detail about this project can be find on wiki page.
+## Frameworks - Libraries
+
+- ASP.NET MVC
+- Entity Framework
+- Autofac
+- Bootstrap 3
+- 3rd part libraries
