@@ -37,7 +37,7 @@ namespace CarRental.Data.Infastructure
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
+                throw e;
             }
         }
     }

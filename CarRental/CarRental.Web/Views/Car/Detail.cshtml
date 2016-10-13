@@ -36,6 +36,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6">
+                            @Html.HiddenFor(model => model.CreatedDate)
                             @Html.LabelFor(model => model.Title, new {@class = "control-label"})
                             @Html.TextBoxFor(model => model.Title, new {@class = "form-control text-center"})
                             @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
@@ -128,6 +129,7 @@
                     <div class="form-group spaceBlock backgroundStyle">
                         @Html.LabelFor(model => model.Rating, new {@class = "control-label"})
                         <div class="custom" data-score="@Model.Rating"></div>
+                        @Html.HiddenFor(model => model.Rating, new { @id = "ratingValue" })
                     </div>
                     <div class="form-group spaceBlock">
                         <input type="submit" class="btn btn-primary" value="Update Car" />
@@ -145,7 +147,27 @@
                 return $(this).attr('data-score');
             },
             number: 5,
-            path: '/Content/images/raty'
+            path: '/Content/images/raty',
+            click: function (score) {
+                $("#ratingValue").val(score);
+            }
         });
+
+        $("#downgrade")
+            .click(function () {
+                var oldValue = $("#inputStocks").val().trim(), newValue = 0;
+                if (oldValue > 1) {
+                    newValue = parseInt(oldValue) - 1;
+                } else {
+                    newValue = 1;
+                }
+                $("#inputStocks").val(newValue);
+            });
+        $("#upgrade")
+            .click(function () {
+                var oldValue = $("#inputStocks").val().trim(), newValue = 0;
+                newValue = parseInt(oldValue) + 1;
+                $("#inputStocks").val(newValue);
+            });
     </script>
 }

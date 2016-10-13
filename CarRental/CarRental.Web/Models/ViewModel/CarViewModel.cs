@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
@@ -131,7 +132,7 @@ namespace CarRental.Web.Models.ViewModel
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Image required")]
+        //[Required(ErrorMessage = "Image required")]
         [Display(Name = "Image")]
         public HttpPostedFileBase Image { get; set; }
 
@@ -140,5 +141,7 @@ namespace CarRental.Web.Models.ViewModel
         [Required(ErrorMessage = "Rating required")]
         [Display(Name = "Rating")]
         public int Rating { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

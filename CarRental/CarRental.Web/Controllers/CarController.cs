@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -13,6 +14,7 @@ namespace CarRental.Web.Controllers
     public class CarController : BaseController
     {
         private readonly IBaseRepository<Car> _carRepository;
+
         public CarController(IBaseRepository<Car> carRepository,
             IBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
             : base(_errorsRepository, _unitOfWork)
@@ -53,16 +55,19 @@ namespace CarRental.Web.Controllers
                     if (model.Image.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(model.Image.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Content/images/uploads"), fileName);
-
-                        var absolutePath = Path.GetFullPath(path);
-                        if (System.IO.File.Exists(absolutePath)) // if file exists throw an error
+                        if (fileName != null)
                         {
-                            ViewData["errorMessage"] = "This file already exists";
-                            return View();
+                            var path = Path.Combine(Server.MapPath("~/Content/images/uploads"), fileName);
+
+                            var absolutePath = Path.GetFullPath(path);
+                            if (System.IO.File.Exists(absolutePath)) // if file exists throw an error
+                            {
+                                ViewData["errorMessage"] = "This file already exists";
+                                return View();
+                            }
+                            model.Image.SaveAs(absolutePath);
+                            pathUrl = path.Substring(path.LastIndexOf("\\") + 1);
                         }
-                        model.Image.SaveAs(absolutePath);
-                        pathUrl = path.Substring(path.LastIndexOf("\\") + 1);
                     }
                     #endregion
 
@@ -141,10 +146,10 @@ namespace CarRental.Web.Controllers
         }
         #endregion
 
-        public ActionResult Detail(int Id)
+        public ActionResult Detail(int id)
         {
             CarViewModel model;
-            var car = _carRepository.FindBy(c => c.ID == Id).FirstOrDefault();
+            var car = _carRepository.FindBy(c => c.ID == id).FirstOrDefault();
             if (car != null)
             {
                 model = new CarViewModel()
@@ -163,7 +168,8 @@ namespace CarRental.Web.Controllers
                     InsuranceType = car.InsuranceType,
                     Price = car.Price,
                     Rating = car.Rating,
-                    GetStock = car.Stocks
+                    GetStock = car.Stocks,
+                    CreatedDate = car.CreatedDate
                 };
             }
             else
@@ -182,27 +188,32 @@ namespace CarRental.Web.Controllers
                 try
                 {
                     #region image
+
                     var pathUrl = "";
 
-                    if (model.Image.ContentLength > 0)
+                    if (model.Image != null && model.Image.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(model.Image.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Content/images/uploads"), fileName);
-
-                        var absolutePath = Path.GetFullPath(path);
-                        if (System.IO.File.Exists(absolutePath)) // if file exists throw an error
+                        if (fileName != null)
                         {
-                            ViewData["errorMessage"] = "This file already exists";
-                            return View();
+                            var path = Path.Combine(Server.MapPath("~/Content/images/uploads"), fileName);
+
+                            var absolutePath = Path.GetFullPath(path);
+                            if (System.IO.File.Exists(absolutePath)) // if file exists throw an error
+                            {
+                                ViewData["errorMessage"] = "This file already exists";
+                                return View();
+                            }
+                            model.Image.SaveAs(absolutePath);
+                            pathUrl = path.Substring(path.LastIndexOf("\\") + 1);
                         }
-                        model.Image.SaveAs(absolutePath);
-                        pathUrl = path.Substring(path.LastIndexOf("\\") + 1);
                     }
+
                     #endregion
 
+                    #region updatedcar
                     var updatedCar = new Car
                     {
-                        ID = model.Id,
                         Title = model.Title,
                         Capacity = ConvertCapacity(model),
                         Location = model.Location,
@@ -215,10 +226,13 @@ namespace CarRental.Web.Controllers
                         Image = pathUrl,
                         InsuranceType = model.InsuranceType,
                         Price = model.Price,
-                        Rating = model.Rating
+                        Rating = model.Rating,
+                        CreatedDate = model.CreatedDate
                     };
+                    #endregion
 
                     #region add stock value
+
                     Stock stock = new Stock()
                     {
                         IsAvailable = 1,
@@ -227,11 +241,17 @@ namespace CarRental.Web.Controllers
                         UniqueKey = Guid.NewGuid()
                     };
                     updatedCar.Stocks.Add(stock);
+
                     #endregion
 
+                    ViewData["successMessage"] = "Ok";
+
                     _carRepository.Update(updatedCar);
+                    _unitOfWork.Commit();
+
+                    return RedirectToAction("Index", "Home");
                 }
-                catch (Exception ex)
+                catch (ValidationException ex)
                 {
                     ViewData["errorMessage"] = ex.Message;
                     var exception = new Error()
@@ -244,13 +264,19 @@ namespace CarRental.Web.Controllers
                     _unitOfWork.Commit();
                 }
             }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                ViewData["errorMessage"] = errors;
+                return View();
+            }
             return View(model);
         }
 
         #region helpers
         public int ConvertCapacity(CarViewModel model)
         {
-            int capacity = 0;
+            int capacity;
             switch (model.Capacity)
             {
                 case "Two":

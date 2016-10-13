@@ -7,7 +7,8 @@ namespace CarRental.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/bower_components/jquery/dist/jquery.js"));
+                        "~/bower_components/jquery/dist/jquery.js",
+                        "~/bower_components/jquery-ui/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -30,7 +31,9 @@ namespace CarRental.Web
                 "~/Content/css/bootstrap.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/css/Site.css").Include("~/bower_components/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+                      "~/Content/css/Site.css")
+                      .Include("~/bower_components/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform())
+                      .Include("~/bower_components/jquery-ui/themes/base/jquery-ui.css"));
         }
     }
 }
