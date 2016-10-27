@@ -47,7 +47,17 @@
                                 <span class="input-group-btn">
                                     <a class="btn btn-default" id="downgrade"><span class="glyphicon glyphicon-minus"></span></a>
                                 </span>
-                                @Html.TextBoxFor(model => model.Stock, new {@id = "inputStocks", @class = "form-control text-center", @Value = @Model.Stock})
+                                @{
+                                    var firstOrDefault = @Model.GetStock.FirstOrDefault();
+                                }
+                                @if (firstOrDefault != null)
+                                {
+                                    @Html.TextBoxFor(model => model.Stock, new {@id = "inputStocks", @class = "form-control text-center", @Value = firstOrDefault.Quantity})
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(model => model.Stock, new { @id = "inputStocks", @class = "form-control text-center", @Value = 0 })
+                                }
                                 @Html.ValidationMessageFor(model => model.Stock, "", new {@class = "text-danger"})
                                 <span class="input-group-btn">
                                     <a class="btn btn-default" id="upgrade"><span class="glyphicon glyphicon-plus"></span></a>

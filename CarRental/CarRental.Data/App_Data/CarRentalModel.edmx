@@ -37,12 +37,12 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="UniqueKey" Type="uniqueidentifier" />
-          <Property Name="TCnumber" Type="int" Nullable="false" />
+          <Property Name="CitizenNumber" Type="int" Nullable="false" />
           <Property Name="PassportNumber" Type="int" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
-          <Property Name="LıcenseOrigin" Type="nvarchar" MaxLength="50" />
+          <Property Name="LicenseOrigin" Type="nvarchar" MaxLength="50" />
           <Property Name="BirthDate" Type="date" />
         </EntityType>
         <EntityType Name="Error">
@@ -257,7 +257,6 @@
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UniqueKey" Type="Guid" />
-          <Property Name="TCnumber" Type="Int32" Nullable="false" />
           <Property Name="PassportNumber" Type="Int32" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -265,6 +264,7 @@
           <Property Name="LicenseOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Rentals" Relationship="Self.FK_Rental_Customer" FromRole="Customer" ToRole="Rental" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="CitizenNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Error">
           <Key>
@@ -480,6 +480,8 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CarRentalDBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="LicenseOrigin" ColumnName="LicenseOrigin" />
+                <ScalarProperty Name="CitizenNumber" ColumnName="CitizenNumber" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
@@ -488,12 +490,10 @@
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
-                <ScalarProperty Name="TCnumber" ColumnName="TCnumber" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="LicenseOrigin" ColumnName="LıcenseOrigin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

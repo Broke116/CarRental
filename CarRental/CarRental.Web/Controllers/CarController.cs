@@ -169,6 +169,7 @@ namespace CarRental.Web.Controllers
                     Price = car.Price,
                     Rating = car.Rating,
                     GetStock = car.Stocks,
+                    
                     CreatedDate = car.CreatedDate
                 };
             }

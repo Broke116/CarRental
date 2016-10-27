@@ -52,7 +52,7 @@ namespace CarRental.Web.Controllers
                         Firstname = model.Firstname,
                         Lastname = model.Lastname,
                         Email = model.Email,
-                        TCnumber = model.CitizenNumber,
+                        CitizenNumber = model.CitizenNumber,
                         BirthDate = model.BirthDate,
                         City = model.City,
                         Country = model.Country,
