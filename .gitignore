@@ -245,3 +245,4 @@ ModelManifest.xml
 .fake/
 /CarRental/CarRental.Web/bower_components
 /CarRental/CarRental.Web/Content/fonts
+/CarRental/CarRental.Web/Scripts/TwitterBootstrapMvcJs.js

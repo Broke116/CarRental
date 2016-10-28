@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
 using CarRental.Data.App_Data;
 using CarRental.Data.Infastructure;
 using CarRental.Data.Repositories;

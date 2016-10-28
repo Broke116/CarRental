@@ -67,7 +67,7 @@ namespace CarRental.Web.Models.ViewModel
         [Display(Name = "BirthDate")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public DateTime CreatedDate { get; set; }
     }

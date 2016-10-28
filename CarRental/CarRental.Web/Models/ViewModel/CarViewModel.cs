@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using System.Web.Mvc;
 using CarRental.Data.App_Data;
 
 namespace CarRental.Web.Models.ViewModel
@@ -57,6 +58,8 @@ namespace CarRental.Web.Models.ViewModel
 
     public class CarViewModel
     {
+        [HiddenInput(DisplayValue = false)]
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Title required")]
