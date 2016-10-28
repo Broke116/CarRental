@@ -44,6 +44,7 @@
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="LicenseOrigin" Type="nvarchar" MaxLength="50" />
           <Property Name="BirthDate" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
         </EntityType>
         <EntityType Name="Error">
           <Key>
@@ -265,6 +266,7 @@
           <NavigationProperty Name="Rentals" Relationship="Self.FK_Rental_Customer" FromRole="Customer" ToRole="Rental" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
           <Property Name="CitizenNumber" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Error">
           <Key>
@@ -480,6 +482,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CarRentalDBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="LicenseOrigin" ColumnName="LicenseOrigin" />
                 <ScalarProperty Name="CitizenNumber" ColumnName="CitizenNumber" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />

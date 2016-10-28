@@ -34,7 +34,8 @@ namespace CarRental.Data.App_Data
         public string LicenseOrigin { get; set; }
         public System.DateTime BirthDate { get; set; }
         public int CitizenNumber { get; set; }
-    
+        public System.DateTime CreatedDate { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
     }

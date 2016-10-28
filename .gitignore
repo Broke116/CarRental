@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /CarRental/CarRental.Web/bower_components
+/CarRental/CarRental.Web/Content/fonts

@@ -23,7 +23,15 @@ namespace CarRental.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var customer = _customerRepository.GetAll()
+                .OrderByDescending(m => m.CreatedDate)
+                .Select(c => new CustomerViewModel
+                {
+                    Firstname = c.Firstname,
+                    Lastname = c.Lastname
+                }).ToList();
+
+            return View(customer);
         }
 
         public ActionResult RegisterCustomer()
@@ -39,12 +47,14 @@ namespace CarRental.Web.Controllers
                 try
                 {
                     #region if customer still exists, it won't add
+
                     var customer = _customerRepository.GetAll().FirstOrDefault(c => c.Email == model.Email);
                     if (customer != null)
                     {
                         ViewData["errorMessage"] = "customer already exists";
                         return View(model);
                     }
+
                     #endregion
 
                     var newCustomer = new Customer()
@@ -53,7 +63,7 @@ namespace CarRental.Web.Controllers
                         Lastname = model.Lastname,
                         Email = model.Email,
                         CitizenNumber = model.CitizenNumber,
-                        BirthDate = model.BirthDate,
+                        BirthDate = model.BirthDate ?? DateTime.Now,
                         City = model.City,
                         Country = model.Country,
                         Gender = model.Gender,
@@ -61,7 +71,8 @@ namespace CarRental.Web.Controllers
                         Mobile = model.Mobile,
                         PassportNumber = model.PassportNumber,
                         Location = model.Location,
-                        UniqueKey = Guid.NewGuid()
+                        UniqueKey = Guid.NewGuid(),
+                        CreatedDate = DateTime.Now
                     };
 
                     ViewData["errorMessage"] = null;
@@ -82,7 +93,11 @@ namespace CarRental.Web.Controllers
                     };
                     _errorsRepository.Add(exception);
                     _unitOfWork.Commit();
-                }    
+                }
+            }
+            else
+            {
+                var errors = ViewData.ModelState.Where(n => n.Value.Errors.Count > 0).ToList();
             }
 
             return View(model);

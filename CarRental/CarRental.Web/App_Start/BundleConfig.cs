@@ -27,6 +27,15 @@ namespace CarRental.Web
             bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
                         "~/bower_components/raty/lib/jquery.raty.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/bower_components/datatables.net/js/jquery.dataTables.min.js",
+                        "~/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"));
+
+            // css files
+
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                      "~/bower_components/datatables.net-bs/css/dataTables.bootstrap.css"));
+
             bundles.Add(new StyleBundle("~/Content/css/bootstrap").Include(
                 "~/Content/css/bootstrap.css", new CssRewriteUrlTransform()));
 
